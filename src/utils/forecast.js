@@ -10,13 +10,18 @@ const forecast = (lat, long, callback) => {
             callback('Unable to find location. Please try another search.', undefined)
         } else {
             const data = body.current
+            console.log(data)
             const temp = data.temperature
             const perc = data.precip
+            const feelsLike = data.feelslike
+            const localTime = data.observation_time
+
             const description = data.weather_descriptions[0]
-            callback(undefined, description + '. The temprature is ' + temp + ' and the chance for rain is ' + perc + '%')
+            callback(undefined, `Local Time is ${localTime}, and the Weather is ${description}
+            .\n The temprature is ${temp}, feels like ${feelsLike}, and the chance for rain is ${perc}%`)
         }
     })
-}
+}   
 
 module.exports = forecast
 
