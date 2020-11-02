@@ -17,8 +17,10 @@ const forecast = (lat, long, callback) => {
             const localTime = data.observation_time
 
             const description = data.weather_descriptions[0]
-            callback(undefined, `Local Time is ${localTime}, and the Weather is ${description}
-            .\n The temprature is ${temp}, feels like ${feelsLike}, and the chance for rain is ${perc}%`)
+            callback(
+                undefined,
+                `Local Time is ${localTime}, and the Weather is ${description}
+                . The temprature is ${temp}, feels like ${feelsLike}, and the chance for rain is ${perc}%`)
         }
     })
 }   
