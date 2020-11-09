@@ -1,4 +1,5 @@
 const request = require('request')
+const os = require('os')
 
 const forecast = (lat, long, callback) => {
     latLogString = lat + ',' + long
@@ -10,17 +11,15 @@ const forecast = (lat, long, callback) => {
             callback('Unable to find location. Please try another search.', undefined)
         } else {
             const data = body.current
-            console.log(data)
             const temp = data.temperature
             const perc = data.precip
             const feelsLike = data.feelslike
-            const localTime = data.observation_time
-
             const description = data.weather_descriptions[0]
-            callback(
-                undefined,
-                `Local Time is ${localTime}, and the Weather is ${description}
-                . The temprature is ${temp}, feels like ${feelsLike}, and the chance for rain is ${perc}%`)
+            const stringToShow = 'The Weather is ' + description +
+            '. The temprature is ' + temp + ', feels like ' + feelsLike + ', and the chance for rain is ' + perc + '%'
+            console.log(stringToShow)
+            callback(undefined, stringToShow)
+
         }
     })
 }   
